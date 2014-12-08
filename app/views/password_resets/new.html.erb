@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Send Email to Reset Password</h1>
+  </div>
+  <div class="panel-body">
+    <%= form_tag password_resets_path, :method => :post do %>
+      <div class="form-group">
+        <%= label_tag :email %>
+      </br>
+        <%= text_field_tag :email, params[:email], placeholder: "An email you often use.", class: "form-control" %>
+      </div>
+      <%= submit_tag "Reset Password", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

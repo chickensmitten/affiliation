@@ -1,0 +1,6 @@
+
+<% @posts.each do |post| %>
+  <%= render 'post', post: post %>
+<% end %>
+
+<%= render 'shared/will_paginate' %>

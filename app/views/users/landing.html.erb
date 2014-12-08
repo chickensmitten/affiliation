@@ -1,0 +1,11 @@
+<% if logged_in? %>
+  <div class ="text-center">
+    <h1>Hello, world!</h1>
+  </div>
+<% else %>
+  <div class ="text-center">
+    <h1>Hello, world!</h1>
+    <p><%= link_to 'Register', register_path, class: 'btn btn-success btn-lg' %>
+    <%= link_to 'Log in', login_path, class: 'btn btn-warning btn-lg' %></p>
+  </div>
+<% end %>

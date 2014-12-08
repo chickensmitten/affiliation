@@ -1,0 +1,60 @@
+<% if logged_in? %>
+  <div class="container-fluid">
+    <div class='navbar-header'>
+        <%= link_to "Affiliation", posts_path, class: 'navbar-brand'  %>
+    </div>      
+      <div class="nav navbar-header navbar-right">       
+        <div class='btn btn-group nav_item'>
+          <%= link_to('', class: 'btn btn-default dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+            Click On: <strong><%= current_user.username %></strong>
+            <span class='caret'></span>
+          <% end %>
+          <ul class='dropdown-menu'>
+            <li>
+              <%= link_to user_path(current_user) do %>
+                <i class='icon-user'></i>
+                View Profile
+              <% end %>
+            </li>  
+            <li>
+              <%= link_to timeline_user_path(current_user) do %>
+                <i class='icon-user'></i>
+                View Timeline
+              <% end %>
+            </li>            
+            <li>
+              <%= link_to edit_user_path(current_user) do %>
+                <i class='icon-pencil'></i>
+                Edit Profile
+              <% end %>
+            </li>                        
+            <li>
+              <%= link_to new_post_path do %>
+                New Post
+              <% end %>
+            </li>        
+            <li>
+              <%= link_to logout_path do %>
+                <i class='icon-circle-arrow-left'></i>
+                Log Out
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>    
+      <% else # logged out%>
+      <div class="container-fluid">
+        <div class='navbar-header'>
+            <%= link_to "Affiliation", root_path, class: 'navbar-brand'  %>
+        </div>        
+        <div class="nav navbar-header navbar-right">
+          <div class='nav_item'>
+            <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
+          </div>
+          <div class='nav_item'>
+            <%= link_to 'Log in', login_path, class: 'btn btn-warning btn-small' %>
+          </div>
+        </div>
+    </div>
+  </div>
+<% end %>

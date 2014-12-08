@@ -1,0 +1,18 @@
+<h2><%= @user.username %>'s Profile</h2>
+
+<p>
+  <% if logged_in? && @user != current_user %>
+    <% if !current_user.followings.include?(@user) %>
+      <%= link_to "Follow", user_relationships_path(@user), method: 'post' %>
+    <% else %>   
+      <%= link_to "Unfollow", user_relationship_path(@user, current_user), method: 'delete' %>
+    <% end %>
+  <% else %>
+  <% end %>
+</p>
+
+<% @posts.each do |post| %>
+  <%= render 'posts/post', post: post %>
+<% end %>
+
+<%= render 'shared/will_paginate' %>

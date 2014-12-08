@@ -1,0 +1,18 @@
+<% @users.each do |user| %>
+  <div class='span8 well'>
+    <p>
+      <%= link_to user.username, user_path(user) %> 
+    </p>
+    <p>
+  <% if logged_in? %>
+    <% if !current_user.followings.include?(user) %>
+      <%= link_to "Follow", user_relationships_path(user), method: 'post' %>
+    <% else %>   
+      <%= link_to "UnFollow", user_relationship_path(user, current_user), method: 'delete' %>
+    <% end %>
+  <% end %>
+</p>
+  </div>
+<% end %>
+
+<%= render 'shared/will_paginate' %>

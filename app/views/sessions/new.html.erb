@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Login</h1>
+  </div>
+  <div class="panel-body">
+    <%= form_tag '/login' do %>
+      <div class='form-group'>
+        <%= label_tag :username %>
+      </br>
+        <%= text_field_tag :username, nil, placeholder: "A name that puts a smile on your face.", class: "form-control" %>
+      </div>
+      <div class='form-group'>
+        <%= label_tag :password %>
+      </br>
+        <%= password_field_tag :password, nil, placeholder: "A reminder that touches your heart.", class: "form-control" %>
+      </div>
+      <div class='from-group'>
+        <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+        <%= label_tag :remember_me %>
+      </div>
+      <div class='from-group'>
+        <p><%= link_to "Forgotten Password?", new_password_reset_path %></p>
+      </div>
+      </br>
+      </br>
+      <%= submit_tag 'Login', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

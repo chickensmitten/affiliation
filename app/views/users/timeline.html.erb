@@ -1,0 +1,7 @@
+<h2><%= @user.username %>'s Timeline</h2>
+
+<% @posts.each do |post| %>
+  <%= render 'posts/post', post: post %>
+<% end %>
+
+<%= render 'shared/will_paginate' %>

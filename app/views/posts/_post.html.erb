@@ -1,0 +1,18 @@
+<div id="post-<%= post.id %>">
+  <small class='quiet text-left'> On <%= display_datetime(post.created_at) %></small>  
+  </br>
+  </br>
+  <div class="well">
+    <p>
+      <%= link_to post.description, post_path(post) %>
+    </p>
+    <footer>
+      <span class='quiet'>
+        status by
+        <%= link_to post.creator.username, user_path(post.creator) %>
+      </span>   
+    </footer>
+  </div> 
+  <hr>  
+  </br>  
+</div>

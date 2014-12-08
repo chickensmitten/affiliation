@@ -1,0 +1,25 @@
+<% if logged_in? and (current_user == @post.creator) %>
+  <%= link_to "Edit Post", edit_post_path(@post) %>
+<% end %>   
+
+<div id="post-<%= @post.id %>">
+  <small class='quiet text-left'> On <%= display_datetime(@post.created_at) %></small>
+  </br>
+  </br>
+  <div class="well">
+    <p>
+      <%= @post.description %>
+    </p>
+    <footer>
+      <span class='quiet'>
+        status by
+        <%= link_to @post.creator.username, user_path(@post.creator) %>
+      </span> 
+    </footer>
+  </div>     
+  <hr>
+  </br>  
+</div>
+
+
+

@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Reset Password</h1>
+  </div>
+  <div class="panel-body">
+    <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+      <div class="form-group">
+        <%= f.label :password %>
+      </br>
+        <%= f.password_field :password, placeholder: "A reminder that touches your heart.", class: "form-control" %>
+      </div>
+      <%= f.submit "Update Password", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
