@@ -21,5 +21,11 @@
   </br>  
 </div>
 
-
+<% if logged_in? %>
+  <%= form_for [@post, @signup] do |f| %>
+    <%= f.hidden_field :username, :value => "#{current_user.username}" %>
+    <%= f.hidden_field :email, :value => "#{current_user.email}" %>
+    <%= f.submit "Sign up with your username and email by clicking this button.", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
 

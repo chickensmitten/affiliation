@@ -8,7 +8,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.paginate(page: params[:page], per_page: 30)   
+    @signup = Signup.new
+    @posts = Post.all
   end
 
   def new

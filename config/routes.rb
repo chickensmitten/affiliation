@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'  
 
-  resources :posts 
+  resources :posts do
+    resources :signups, only: [:create]
+  end
   resources :users, only: [:show, :create, :edit, :update, :index] do
     member do
       post 'Follow'
