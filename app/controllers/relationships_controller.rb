@@ -6,7 +6,8 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    @user = current_user.leader_relationships.build(follower_id: current_user.id, leader_id: params[:user_id])
+    leader = User.find(params[:user_id])
+    @user = current_user.leader_relationships.build(follower_id: current_user.id, leader_id: params[:user_id], :url=>leader.username+"_"+current_user.username)
     if @user.save
       flash[:notice] = "Added."
       redirect_to user_path(current_user)
