@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209065140) do
+ActiveRecord::Schema.define(version: 20141211092925) do
+
+  create_table "bounties", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.text     "description"

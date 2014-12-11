@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '~> 3.0.6'
+gem 'cocoon'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

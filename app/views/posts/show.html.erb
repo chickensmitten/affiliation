@@ -1,31 +1,45 @@
 <% if logged_in? and (current_user == @post.creator) %>
   <%= link_to "Edit Post", edit_post_path(@post) %>
 <% end %>   
-
-<div id="post-<%= @post.id %>">
-  <small class='quiet text-left'> On <%= display_datetime(@post.created_at) %></small>
-  </br>
-  </br>
-  <div class="well">
-    <p>
-      <%= @post.description %>
-    </p>
-    <footer>
-      <span class='quiet'>
-        status by
-        <%= link_to @post.creator.username, user_path(@post.creator) %>
-      </span> 
-    </footer>
-  </div>     
-  <hr>
-  </br>  
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <div id="post-<%= @post.id %>">
+      <small class='quiet text-left'> On <%= display_datetime(@post.created_at) %></small>
+      </br>
+      </br>
+        <p>
+          <%= @post.description %>
+        </p>
+        <footer>
+          <span class='quiet'>
+            status by
+            <%= link_to @post.creator.username, user_path(@post.creator) %>
+          </span> 
+        </footer>  
+      <hr>
+      </br>  
+    </div>
+    <% if logged_in? %>
+      <%= form_for [@post, @signup] do |f| %>
+        <%= f.hidden_field :username, :value => "#{current_user.username}" %>
+        <%= f.hidden_field :email, :value => "#{current_user.email}" %>
+        <%= f.submit "Sign up with your username and email by clicking this button.", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-xs-6 col-md-4">
+    <div class="well">
+      <% @bounty.each do |bounty| %>
+        <p>
+        <%= bounty.title %>
+        </p>
+        <p>
+        <%= bounty.description %>
+        </p>
+      <% end %>
+    </div>   
+  </div>
 </div>
 
-<% if logged_in? %>
-  <%= form_for [@post, @signup] do |f| %>
-    <%= f.hidden_field :username, :value => "#{current_user.username}" %>
-    <%= f.hidden_field :email, :value => "#{current_user.email}" %>
-    <%= f.submit "Sign up with your username and email by clicking this button.", class: "btn btn-primary" %>
-  <% end %>
-<% end %>
+
 
