@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209065140) do
+ActiveRecord::Schema.define(version: 20141211080318) do
 
   create_table "posts", force: true do |t|
     t.text     "description"
@@ -46,5 +46,32 @@ ActiveRecord::Schema.define(version: 20141209065140) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
   end
+
+  create_table "visits", force: true do |t|
+    t.uuid     "visitor_id"
+    t.string   "ip"
+    t.text     "user_agent"
+    t.text     "referrer"
+    t.text     "landing_page"
+    t.integer  "user_id"
+    t.string   "referring_domain"
+    t.string   "search_keyword"
+    t.string   "browser"
+    t.string   "os"
+    t.string   "device_type"
+    t.string   "country"
+    t.string   "region"
+    t.string   "city"
+    t.string   "utm_source"
+    t.string   "utm_medium"
+    t.string   "utm_term"
+    t.string   "utm_content"
+    t.string   "utm_campaign"
+    t.datetime "started_at"
+    t.integer  "follower"
+  end
+
+  add_index "visits", ["id"], name: "sqlite_autoindex_visits_1", unique: true
+  add_index "visits", ["user_id"], name: "index_visits_on_user_id"
 
 end

@@ -1,8 +1,12 @@
 class RelationshipsController < ApplicationController
   before_action :require_user, only: [:create, :destroy]  
 
+  def show
+    
+  end
+  
   def index
-
+  
   end
 
   def create
