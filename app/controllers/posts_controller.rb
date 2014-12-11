@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit( :description, bounties_attributes: [:title, :description, :_destroy])
+    params.require(:post).permit( :description, :category_ids, bounties_attributes: [:title, :description, :_destroy])
   end
 
   def set_post
