@@ -68,7 +68,8 @@ ActiveRecord::Schema.define(version: 20141211080318) do
     t.string   "utm_content"
     t.string   "utm_campaign"
     t.datetime "started_at"
-    t.integer  "follower"
+    t.integer  "follower_id"
+    t.integer  "leader_id"
   end
 
   add_index "visits", ["id"], name: "sqlite_autoindex_visits_1", unique: true

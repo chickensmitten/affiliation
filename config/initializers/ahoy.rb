@@ -4,7 +4,11 @@ class Ahoy::Store < Ahoy::Stores::ActiveRecordStore
   
   def track_visit(options)
     super do |visit|
-      visit.follower = visit_properties.landing_params["follower"]
+      relation = visit.landing_page.split("/").last.split("_")
+      follower = (relation.count == 2) ? relation.last : ""
+      leader = (relation.count == 2) ? relation.first : ""
+      visit.follower_id = User.where("username = ?",follower).try(:first).try(:id) if follower.present?
+      visit.leader_id = User.where("username = ?",leader).try(:first).try(:id) if leader.present?
     end
   end
 end

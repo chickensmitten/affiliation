@@ -51,8 +51,16 @@ class UsersController < ApplicationController
     params.require(:user).permit(:username, :password, :email, :id)
   end
 
-  def set_user  
-    @user = User.find(params[:id])
+  def set_user
+    check_user = params[:id].split("_")
+    if check_user.count == 1
+      @user = User.find(params[:id])
+    else
+      users = User.where("username = ?",check_user.first)
+      if users.present?
+        @user = users.first
+      end
+    end
   end
 
   def require_same_user
