@@ -50,7 +50,15 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    check_post = params[:id].split("_")
+    if check_post.count == 1
+      @post = Post.where("id = ?",params[:id]).first
+    else
+      posts = Post.where("id = ?",check_post.first)
+      if posts.present?
+        @post = posts.first
+      end
+    end
   end
 
   def require_creator

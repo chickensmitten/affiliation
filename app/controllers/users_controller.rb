@@ -1,8 +1,20 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :timeline]
-  before_action :require_same_user, only: [:edit, :update]    
+  before_action :set_user, only: [:show, :edit, :update, :timeline, :visits]
+  before_action :require_same_user, only: [:edit, :update, :visits]    
 
   def landing
+  end
+
+  def visits
+    @visits = Array.new
+    @user.followers.each do |follower|
+      visit = Visit.where("leader_id = ? and follower_id = ?",@user.id,follower.id).group("landing_page,referrer").select("landing_page, referrer, count(id) as clicks").order("clicks desc")
+      if visit.present?
+        @visits << {"follower" => follower, "visits" => visit}
+      else
+        @visits << {"follower" => follower, "visits" => ""}
+      end
+    end
   end
   
   def show
@@ -54,9 +66,9 @@ class UsersController < ApplicationController
   def set_user
     check_user = params[:id].split("_")
     if check_user.count == 1
-      @user = User.find(params[:id])
+      @user = User.where("id = ?",params[:id]).try(:first)
     else
-      users = User.where("username = ?",check_user.first)
+      users = User.where("id = ?",check_user.first)
       if users.present?
         @user = users.first
       end
