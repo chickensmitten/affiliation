@@ -1,17 +1,13 @@
 class RelationshipsController < ApplicationController
   before_action :require_user, only: [:create, :destroy]  
 
-  def show
-    
-  end
-  
   def index
-  
+
   end
 
   def create
     leader = User.find(params[:user_id])
-    @user = current_user.leader_relationships.build(follower_id: current_user.id, leader_id: params[:user_id])
+    @user = current_user.leader_relationships.build(follower_id: current_user.id, leader_id: params[:user_id], :url=>leader.username+"_"+current_user.username)
     if @user.save
       flash[:notice] = "Added."
       redirect_to user_path(current_user)

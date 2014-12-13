@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :create, :edit, :update, :index] do
     member do
-      get 'visits'
       post 'Follow'
       post 'Unfollow'  
       get '/timeline', to: 'users#timeline'              
@@ -19,5 +18,5 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy, :index]  
   end
   resources :password_resets
-
+  resources :categories
 end
