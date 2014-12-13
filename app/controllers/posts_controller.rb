@@ -9,12 +9,11 @@ class PostsController < ApplicationController
 
   def show
     @signup = Signup.new
-    @bounty = @post.bounties.all
+    @posts = Post.all
   end
 
   def new
     @post = Post.new
-    @bounty = Bounty.new
   end
 
   def create
@@ -47,11 +46,19 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit( :description, :category_ids, bounties_attributes: [:title, :description, :_destroy])
+    params.require(:post).permit( :description)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    check_post = params[:id].split("_")
+    if check_post.count == 1
+      @post = Post.where("id = ?",params[:id]).first
+    else
+      posts = Post.where("id = ?",check_post.first)
+      if posts.present?
+        @post = posts.first
+      end
+    end
   end
 
   def require_creator
