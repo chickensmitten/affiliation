@@ -5,13 +5,8 @@
     <% if !current_user.followings.include?(@user) %>
       <%= link_to "Follow", user_relationships_path(@user), method: 'post' %>
     <% else %>   
+      <%= link_to "Share", user_relationship_path(@user, current_user) %> | 
       <%= link_to "Unfollow", user_relationship_path(@user, current_user), method: 'delete' %>
-      <br>
-      <input type="text" readonly id="sharelink" value="<%=user_url(@user.id.to_s+"_"+current_user.username)%>" style="float:left;">
-      <div style="display:none;">
-        <img src="/assets/copy.png" id="d_clip_button" class="my_clip_button" title="Click me to copy to clipboard." data-clipboard-text="<%=user_url(@user.id.to_s+"_"+current_user.username)%>">
-      </div>
-      <%= render :partial=>"layouts/clipboard" %>
     <% end %>
   <% else %>
   <% end %>
@@ -19,8 +14,6 @@
 
 <% @posts.each do |post| %>
   <%= render 'posts/post', post: post %>
-<% end if @posts.present? %>
+<% end %>
 
-<%= render 'shared/will_paginate' if @posts.present?  %>
-
-
+<%= render 'shared/will_paginate' %>

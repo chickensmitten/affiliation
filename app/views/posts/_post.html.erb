@@ -4,6 +4,9 @@
   </br>
   <div class="well">
     <p>
+      <%= render post.categories %>
+    </p>
+    <p>
       <%= link_to post.description, post_path(post) %>
     </p>
     <footer>
@@ -12,17 +15,7 @@
         <%= link_to post.creator.username, user_path(post.creator) %>
       </span>   
     </footer>
-    <% if current_user.present? and current_user.followings.include?(post.creator) %>
-      <% clipboard = 1 %>
-      <input type="text" readonly id="sharelink" value="<%=post_url(post.id.to_s+"_"+current_user.username)%>" style="float:left;">
-      <div style="display:none;">
-        <img src="/assets/copy.png" id="d_clip_button" class="my_clip_button" title="Click me to copy to clipboard." data-clipboard-text="<%=post_url(post.id.to_s+"_"+current_user.username)%>">
-      </div>
-      <div style="clear:both;"></div>
-    <% end %>
   </div> 
   <hr>  
   </br>  
 </div>
-
-<%= render :partial=>"layouts/clipboard" if (clipboard.present? and clipboard == 1) %>

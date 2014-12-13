@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Create New Project</h1>
+  </div>
+    <div class="panel-body">
+      <%= form_for @post do |f| %>
+        <div class='form-group'>
+          <%= f.label "Share your project with us." %>
+          <%= f.text_area :description, rows: 5, class: "form-control" %>
+        </div>
+        <%= f.submit(@post.new_record? ? 'Create Post' : 'Update Post', class: 'btn btn-success')%>
+      <% end %>
+    </div>
+</div>
+
