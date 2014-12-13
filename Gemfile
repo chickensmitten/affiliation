@@ -11,8 +11,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '~> 3.0.6'
-gem 'cocoon'
-
+gem 'pg'
 group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
@@ -27,3 +26,5 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+gem 'ahoy_matey'
+gem 'activeuuid', '>= 0.5.0'
